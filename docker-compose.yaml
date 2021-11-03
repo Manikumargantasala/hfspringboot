@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+  hellofresh-service:
+    build:
+      context: ./hellofresh-service
+    ports:
+      - "80:80"
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URI: "jdbc:postgresql://postgres:5432/menu"
+      SPRING_DATASOURCE_USERNAME: "postgres"
+      SPRING_DATASOURCE_PASSWORD: "password"
+      SERVER_PORT: 80
