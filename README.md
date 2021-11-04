@@ -1,8 +1,8 @@
-# Running Application
-swagger - http://vm130578.cloud.v2cloud.com/hellofresh/swagger-ui.html
+# Running ApplicatioS
+Openapi Specification / Swagger - http://vm130578.cloud.v2cloud.com/hellofresh/swagger-ui.html
 
 
-#Database Design
+# Database Design
 
 ![](data/db_1.png)
 
