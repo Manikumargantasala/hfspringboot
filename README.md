@@ -1,4 +1,4 @@
-# Running ApplicatioS
+# Running Application
 Openapi Specification / Swagger - http://vm130578.cloud.v2cloud.com/hellofresh/swagger-ui.html
 
 
