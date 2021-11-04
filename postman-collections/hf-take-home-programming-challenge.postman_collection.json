@@ -1,0 +1,616 @@
+{
+	"info": {
+		"_postman_id": "861121c9-1247-40d7-8c5a-0519ecf1979d",
+		"name": "hf-take-home-programming-challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ingredients",
+			"item": [
+				{
+					"name": "AddOrUpdate",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"name\": \"chicken tenderloin\",\n        \"imageUrl\": \"https://static.onecms.io/wp-content/uploads/sites/43/2019/07/1260616200_6065658962001_6065652236001-vs.jpg\"\n    },\n    {\n        \"name\": \"garlic paste\",\n        \"imageUrl\": \"https://static.onecms.io/wp-content/uploads/sites/43/2019/07/1260616200_6065658962001_6065652236001-vs.jpg\"\n    },\n    {\n        \"name\": \"chilli\",\n        \"imageUrl\": \"https://static.onecms.io/wp-content/uploads/sites/43/2019/07/1260616200_6065658962001_6065652236001-vs.jpg\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://vm130578.cloud.v2cloud.com/hellofresh/ingredients/",
+							"protocol": "http",
+							"host": [
+								"vm130578",
+								"cloud",
+								"v2cloud",
+								"com"
+							],
+							"path": [
+								"hellofresh",
+								"ingredients",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.environment.set(\"ingredient_1\", jsonData[0].id); ",
+									"pm.environment.set(\"ingredient_2\", jsonData[1].id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://vm130578.cloud.v2cloud.com/hellofresh/ingredients",
+							"protocol": "http",
+							"host": [
+								"vm130578",
+								"cloud",
+								"v2cloud",
+								"com"
+							],
+							"path": [
+								"hellofresh",
+								"ingredients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://vm130578.cloud.v2cloud.com/hellofresh/ingredients/{{ingredient_1}}",
+							"protocol": "http",
+							"host": [
+								"vm130578",
+								"cloud",
+								"v2cloud",
+								"com"
+							],
+							"path": [
+								"hellofresh",
+								"ingredients",
+								"{{ingredient_1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://vm130578.cloud.v2cloud.com/hellofresh/ingredients/{{ingredient_1}}",
+							"protocol": "http",
+							"host": [
+								"vm130578",
+								"cloud",
+								"v2cloud",
+								"com"
+							],
+							"path": [
+								"hellofresh",
+								"ingredients",
+								"{{ingredient_1}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "recipes",
+			"item": [
+				{
+					"name": "addOrUpdate",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"title\": \"chicken grilled\",\n        \"description\": \"Grilled chicken breasts can be the epitome of boring. Too often they're dried out or rubbery. But when soaked in a super-quick marinade — with balsamic, brown sugar, and dried thyme — you're guaranteed deliciousness. Not to mention, grilling the breasts will lock in all those amazing flavors while providing some serious char.\",\n        \"ingredients\": [\n            {\n                \"id\": {{ingredient_1}}\n            },\n            {\n                \"id\": {{ingredient_2}}\n            }\n        ],\n        \"instructions\": [\n            {\n                \"step\": \"1\",\n                \"description\": \"Season chicken breasts all over with salt and pepper. Rub with a drizzle of olive oil. Place on a second baking sheet.\"\n            },\n            {\n                \"step\": \"2\",\n                \"description\": \"Bake chicken until meat is cooked through and topping is golden brown, about 20 minutes. Serve with potato wedges and roasted tomatoes.\"\n            }\n        ],\n        \"nutritionFact\": {\n            \"energy\": \"500 Kj\",\n            \"fat\": \"35 g\"\n        }\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://vm130578.cloud.v2cloud.com/hellofresh/recipes",
+							"protocol": "http",
+							"host": [
+								"vm130578",
+								"cloud",
+								"v2cloud",
+								"com"
+							],
+							"path": [
+								"hellofresh",
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.environment.set(\"recipe_1\", jsonData[0].id);",
+									"pm.environment.set(\"instruction_1\", jsonData[0].instructions[0].id);",
+									"pm.environment.set(\"nutritionFact_1\", jsonData[0].nutritionFact.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://vm130578.cloud.v2cloud.com/hellofresh/recipes",
+							"protocol": "http",
+							"host": [
+								"vm130578",
+								"cloud",
+								"v2cloud",
+								"com"
+							],
+							"path": [
+								"hellofresh",
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://vm130578.cloud.v2cloud.com/hellofresh/recipes/{{recipe_1}}",
+							"protocol": "http",
+							"host": [
+								"vm130578",
+								"cloud",
+								"v2cloud",
+								"com"
+							],
+							"path": [
+								"hellofresh",
+								"recipes",
+								"{{recipe_1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://vm130578.cloud.v2cloud.com/hellofresh/recipes/{{recipe_1}}",
+							"protocol": "http",
+							"host": [
+								"vm130578",
+								"cloud",
+								"v2cloud",
+								"com"
+							],
+							"path": [
+								"hellofresh",
+								"recipes",
+								"{{recipe_1}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "reviews",
+			"item": [
+				{
+					"name": "addOrUpdate",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"rating\": 4,\n        \"comment\": \"yummy!!\",\n        \"recipe\": {\n            \"id\": {{recipe_1}}\n        }\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://vm130578.cloud.v2cloud.com/hellofresh/reviews",
+							"protocol": "http",
+							"host": [
+								"vm130578",
+								"cloud",
+								"v2cloud",
+								"com"
+							],
+							"path": [
+								"hellofresh",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllReview",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.environment.set(\"review_1\", jsonData[0].id); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://vm130578.cloud.v2cloud.com/hellofresh/reviews",
+							"protocol": "http",
+							"host": [
+								"vm130578",
+								"cloud",
+								"v2cloud",
+								"com"
+							],
+							"path": [
+								"hellofresh",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"rating\": 4,\n        \"comment\": \"yummy!!\",\n        \"recipe\": {\n            \"id\": {{recipe_1}}\n        }\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://vm130578.cloud.v2cloud.com/hellofresh/reviews/{{review_1}}",
+							"protocol": "http",
+							"host": [
+								"vm130578",
+								"cloud",
+								"v2cloud",
+								"com"
+							],
+							"path": [
+								"hellofresh",
+								"reviews",
+								"{{review_1}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "menu",
+			"item": [
+				{
+					"name": "addOrUpdate",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"recipes\": [\n            {\n                \"id\": {{recipe_1}}\n            }\n        ]\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://vm130578.cloud.v2cloud.com/hellofresh/menus",
+							"protocol": "http",
+							"host": [
+								"vm130578",
+								"cloud",
+								"v2cloud",
+								"com"
+							],
+							"path": [
+								"hellofresh",
+								"menus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.environment.set(\"menu_1\", jsonData[0].id); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://vm130578.cloud.v2cloud.com/hellofresh/menus",
+							"protocol": "http",
+							"host": [
+								"vm130578",
+								"cloud",
+								"v2cloud",
+								"com"
+							],
+							"path": [
+								"hellofresh",
+								"menus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://vm130578.cloud.v2cloud.com/hellofresh/menus/{{menu_1}}",
+							"protocol": "http",
+							"host": [
+								"vm130578",
+								"cloud",
+								"v2cloud",
+								"com"
+							],
+							"path": [
+								"hellofresh",
+								"menus",
+								"{{menu_1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://vm130578.cloud.v2cloud.com/hellofresh/menus/{{menu_1}}",
+							"protocol": "http",
+							"host": [
+								"vm130578",
+								"cloud",
+								"v2cloud",
+								"com"
+							],
+							"path": [
+								"hellofresh",
+								"menus",
+								"{{menu_1}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "instructions",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://vm130578.cloud.v2cloud.com/hellofresh/instructions",
+							"protocol": "http",
+							"host": [
+								"vm130578",
+								"cloud",
+								"v2cloud",
+								"com"
+							],
+							"path": [
+								"hellofresh",
+								"instructions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://vm130578.cloud.v2cloud.com/hellofresh/instructions/{{instruction_1}}",
+							"protocol": "http",
+							"host": [
+								"vm130578",
+								"cloud",
+								"v2cloud",
+								"com"
+							],
+							"path": [
+								"hellofresh",
+								"instructions",
+								"{{instruction_1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://vm130578.cloud.v2cloud.com/hellofresh/instructions/{{instruction_1}}",
+							"protocol": "http",
+							"host": [
+								"vm130578",
+								"cloud",
+								"v2cloud",
+								"com"
+							],
+							"path": [
+								"hellofresh",
+								"instructions",
+								"{{instruction_1}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "nutritionFact",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://vm130578.cloud.v2cloud.com/hellofresh/nutritionFacts",
+							"protocol": "http",
+							"host": [
+								"vm130578",
+								"cloud",
+								"v2cloud",
+								"com"
+							],
+							"path": [
+								"hellofresh",
+								"nutritionFacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://vm130578.cloud.v2cloud.com/hellofresh/nutritionFacts/{{nutritionFact_1}}",
+							"protocol": "http",
+							"host": [
+								"vm130578",
+								"cloud",
+								"v2cloud",
+								"com"
+							],
+							"path": [
+								"hellofresh",
+								"nutritionFacts",
+								"{{nutritionFact_1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://vm130578.cloud.v2cloud.com/hellofresh/nutritionFacts/{{nutritionFact_1}}",
+							"protocol": "http",
+							"host": [
+								"vm130578",
+								"cloud",
+								"v2cloud",
+								"com"
+							],
+							"path": [
+								"hellofresh",
+								"nutritionFacts",
+								"{{nutritionFact_1}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

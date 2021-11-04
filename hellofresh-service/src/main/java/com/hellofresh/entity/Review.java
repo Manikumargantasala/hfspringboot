@@ -22,7 +22,7 @@ public class Review {
     @Column(name = "rating")
     private int rating;
 
-    @Column(name = "comment")
+    @Column(name = "comment", length = 2000)
     private String comment;
 
     @ManyToOne(fetch = FetchType.LAZY)

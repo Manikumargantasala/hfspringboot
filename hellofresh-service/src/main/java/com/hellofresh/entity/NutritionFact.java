@@ -41,8 +41,4 @@ public class NutritionFact {
 
     @Column(name = "sodium")
     private String sodium;
-
-//    @OneToOne
-//    @JoinColumn(name = "recipe_id", referencedColumnName = "id", nullable = false)
-//    private Recipe recipe;
 }

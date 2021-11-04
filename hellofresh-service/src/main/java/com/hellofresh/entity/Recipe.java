@@ -24,7 +24,7 @@ public class Recipe {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 2000)
     private String description;
 
     @ManyToMany

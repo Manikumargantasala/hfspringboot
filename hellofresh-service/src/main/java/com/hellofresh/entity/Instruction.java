@@ -1,10 +1,9 @@
 package com.hellofresh.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "instruction")
@@ -22,7 +21,7 @@ public class Instruction {
     @Column(name = "step", nullable = false)
     private int step;
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "description", nullable = false, length = 2000)
     private String description;
 
     @Column(name = "image_url")
